@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new file 'server.js' in 'src/'. This file will use Express.js to handle API requests.
