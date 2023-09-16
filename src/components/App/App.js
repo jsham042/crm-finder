@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new React component 'App' in 'src/components/App/App.js'. This component will serve as the main component of the application.
