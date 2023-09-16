@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InputField from "../InputField/InputField";
+import { requestCompanyInfo } from "../../api/companyInfo";
 import LeadershipTable from "../LeadershipTable/LeadershipTable";
 const App = () => {
   const [data, setData] = useState(null);
@@ -11,17 +12,7 @@ const App = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("/api/leadership", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ companyName }),
-      });
-      if (!response.ok) {
-        throw new Error("Error fetching data");
-      }
-      const data = await response.json();
+      const data = await requestCompanyInfo(companyName);
       if (!data.leadershipInfo) {
         throw new Error("No leadership info found");
       }
