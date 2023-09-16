@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new file to handle API requests to the backend Express.js server. This file should include a function to make a GET request with the company name as a parameter and return the company leadership information.
