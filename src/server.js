@@ -1,24 +1,41 @@
 const express = require("express");
 const app = express();
-const OpenAI = require("./OpenAI.js");
+const emailValidator = require("email-validator");
 
 app.use(express.json());
 
-app.post("/api/leadership", async (req, res) => {
-  const companyName = req.body.companyName;
-  if (!companyName) {
-    return res.status(400).send({ error: "Company name is required" });
+app.post("/api/emailFormat", async (req, res) => {
+  const { domain } = req.body;
+  if (!domain) {
+    return res.status(400).json({ error: "Domain is required" });
   }
 
   try {
-    const leadershipInfo = await OpenAI.searchInternetForInformation(
-      `Leadership of ${companyName}`,
-    );
-    res.send({ leadershipInfo });
+    const emails = await getEmailsFromDomain(domain);
+    const formats = analyzeEmailFormats(emails);
+    return res.json({ formats });
   } catch (error) {
-    res.status(500).send({ error: "Error retrieving leadership information" });
+    return res.status(500).json({ error: "Server error" });
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+function getEmailsFromDomain(domain) {
+  // This function should return a list of emails from the given domain.
+  // The implementation depends on your specific use case.
+}
+
+function analyzeEmailFormats(emails) {
+  const formats = {};
+
+  emails.forEach((email) => {
+    if (emailValidator.validate(email)) {
+      const [local, domain] = email.split("@");
+      const format = local.replace(/[^@]+/g, "*") + "@" + domain;
+      formats[format] = (formats[format] || 0) + 1;
+    }
+  });
+
+  return formats;
+}
+
+app.listen(3000, () => console.log("Server is running on port 3000"));
