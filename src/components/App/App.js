@@ -5,6 +5,7 @@ import ResultsTable from "../ResultsTable/ResultsTable";
 const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [companyName, setCompanyName] = useState("");
 
   const handleSearch = async (companyName) => {
     setLoading(true);
@@ -22,10 +23,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <InputField onSearch={handleSearch} />
+      <InputField
+        onSearch={handleSearch}
+        companyName={companyName}
+        setCompanyName={setCompanyName}
+      />
       {loading ? <p>Loading...</p> : <ResultsTable data={data} />}
     </div>
   );
 };
-
 export default App;
