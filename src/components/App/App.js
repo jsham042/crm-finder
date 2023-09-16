@@ -23,13 +23,25 @@ const App = () => {
     setLoading(false);
   };
 
+  const handleInputChange = (event) => {
+    setCompanyName(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleSearch(companyName);
+  };
+
   return (
     <div className="App">
-      <InputField
-        onSearch={handleSearch}
-        companyName={companyName}
-        setCompanyName={setCompanyName}
-      />
+      <form onSubmit={handleSubmit}>
+        <InputField
+          value={companyName}
+          onChange={handleInputChange}
+          placeholder="Enter company name"
+        />
+        <button type="submit">Search</button>
+      </form>
       {loading ? <p>Loading...</p> : <ResultsTable data={data} />}
     </div>
   );
