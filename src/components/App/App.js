@@ -6,6 +6,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
+  const [searchResults, setSearchResults] = useState(null);
 
   const handleSearch = async (companyName) => {
     setLoading(true);
@@ -18,6 +19,7 @@ const App = () => {
     });
     const data = await response.json();
     setData(data.leadershipInfo);
+    setSearchResults(data.leadershipInfo);
     setLoading(false);
   };
 
