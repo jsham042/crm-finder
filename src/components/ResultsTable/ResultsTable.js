@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new React component 'ResultsTable' in 'src/components/ResultsTable/ResultsTable.js'. This component will render a responsive table for displaying the results.
