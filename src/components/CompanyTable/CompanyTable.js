@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new React component 'CompanyTable.js' that displays the results in a responsive table with columns for Name, Title, Phone Number, and Email.

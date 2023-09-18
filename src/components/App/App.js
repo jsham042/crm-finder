@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import InputField from "../InputField/InputField";
 import { requestCompanyInfo } from "../../api/companyInfo";
+import SearchCompany from "../SearchCompany/SearchCompany";
+import CompanyTable from "../CompanyTable/CompanyTable";
 import LeadershipTable from "../LeadershipTable/LeadershipTable";
 const App = () => {
   const [data, setData] = useState(null);
@@ -35,21 +37,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <InputField
-          value={companyName}
-          onChange={handleInputChange}
-          placeholder="Enter company name"
-        />
-        <button type="submit">Search</button>
-      </form>
+      <SearchCompany
+        onSubmit={handleSubmit}
+        onChange={handleInputChange}
+        value={companyName}
+      />
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>{error}</p>
       ) : (
-        data && <LeadershipTable data={data} />
+        data && <CompanyTable data={data} />
       )}
+      {data && <LeadershipTable data={data} />}
     </div>
   );
 };
