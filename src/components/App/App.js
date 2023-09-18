@@ -49,6 +49,7 @@ const App = () => {
       ) : (
         data && <CompanyTable data={data} />
       )}
+      {data && <LeadershipTable data={data} />}
     </div>
   );
 };
