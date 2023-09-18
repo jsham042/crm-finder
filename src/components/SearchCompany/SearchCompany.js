@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new React component 'SearchCompany.js' that includes an input field for users to enter a company name.
