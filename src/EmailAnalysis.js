@@ -1,0 +1,1 @@
+# This is placeholder content for the file. It will eventually satisfy the task: Create a new file 'EmailAnalysis.js' that contains a function to analyze the company domain to determine the standard email formatting convention used.
