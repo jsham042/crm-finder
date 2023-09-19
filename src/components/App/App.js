@@ -4,11 +4,13 @@ import { requestCompanyInfo } from "../../api/companyInfo";
 import SearchCompany from "../SearchCompany/SearchCompany";
 import CompanyTable from "../CompanyTable/CompanyTable";
 import LeadershipTable from "../LeadershipTable/LeadershipTable";
+import LoginPage from "../LoginPage/LoginPage";
 const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSearch = async (companyName) => {
     setLoading(true);
@@ -37,19 +39,25 @@ const App = () => {
 
   return (
     <div className="App">
-      <SearchCompany
-        onSubmit={handleSubmit}
-        onChange={handleInputChange}
-        value={companyName}
-      />
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
+      {isLoggedIn ? (
+        <>
+          <SearchCompany
+            onSubmit={handleSubmit}
+            onChange={handleInputChange}
+            value={companyName}
+          />
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : (
+            data && <CompanyTable data={data} />
+          )}
+          {data && <LeadershipTable data={data} />}
+        </>
       ) : (
-        data && <CompanyTable data={data} />
+        <LoginPage setIsLoggedIn={setIsLoggedIn} />
       )}
-      {data && <LeadershipTable data={data} />}
     </div>
   );
 };
